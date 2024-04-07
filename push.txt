@@ -1,3 +1,5 @@
+git credential-cache exit
+git config --unset credential.helper
 git config --global core.autocrlf false
 git init
 git add .
