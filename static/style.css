@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+header {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    padding: 5px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3) ;
+}
+  
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+  
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+.logo {
+    height: 40px;
+}
+  
+ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+  
+li {
+    margin-right: 10px;
+}
+  
+a {
+    text-decoration: none;
+    color: #fff;
+}
+  
+.search {
+    position: relative;
+}
+  
+.search a {
+    display: flex;
+    align-items: center;
+}
+  
+.fa-magnifying-glass {
+    font-size: 16px;
+}
+  
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+  
+.project-card {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    margin: 20px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    background-color: transparent;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+  
+.project-card:hover{
+    transform: scale(1.05);
+    backdrop-filter: blur(5px);
+}
+  
+h1, h2 {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+  
+p {
+    color: black;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+  
+a {
+    border-radius: 25px;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+.nav a.active {
+    background-color: #0056b3;
+    text-decoration: underline;
+}
+.nav .github {
+    font-size: 2em;
+}
+
+.nav .git {
+    background-color: transparent;
+}
+
+main a {
+    background-color: #0056b3;
+}

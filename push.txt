@@ -1,0 +1,7 @@
+git config --global core.autocrlf false
+git init
+git add .
+git commit -m "commit message"
+git remote add origin https://github.com/ismail-farooq/projects.git
+git branch -M main
+git push -u origin main
