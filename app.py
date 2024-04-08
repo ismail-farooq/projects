@@ -1,5 +1,6 @@
 from flask import Flask, flash, session, render_template, Response, redirect, url_for, request
 import os, datetime
+import time
 from cs50 import SQL
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -74,6 +75,7 @@ def video_feed():
 @app.route('/camera_feed')
 def camera_feed():
     cap = cv2.VideoCapture(0)
+    time.sleep(3)
     return render_template("video_feed.html")
 
 @app.route("/trade")
@@ -129,7 +131,7 @@ def buy():
 
         flash("Stock purchased!")
 
-        return redirect("/")
+        return redirect("/trade")
     else:
         return render_template("buy.html")
 
@@ -181,7 +183,7 @@ def login():
         flash(f"Logged in as {rows[0]['username']}!")
 
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/trade")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -196,7 +198,7 @@ def logout():
     session.clear()
 
     # Redirect user to login form
-    return redirect("/")
+    return redirect("/trade")
 
 
 @app.route("/quote", methods=["GET", "POST"])
@@ -246,7 +248,7 @@ def register():
         session["user_id"] = user
         flash("Registered!")
 
-        return redirect("/")
+        return redirect("/trade")
     else:
         return render_template("register.html")
 
@@ -295,7 +297,7 @@ def sell():
                    "SOLD", stock["symbol"], number_of_shares, stock["price"],  stock["price"]*number_of_shares, date, session["user_id"])
 
         flash(f"{stock_symbol} sold successfully for {stock['price']}")
-        return redirect("/")
+        return redirect("/trade")
     else:
         owned_stocks = db.execute("SELECT * FROM purchases WHERE user_id=?", session["user_id"])
         return render_template("sell.html", owned_stocks=owned_stocks)
