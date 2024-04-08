@@ -133,14 +133,14 @@ def buy():
 
         return redirect("/trade")
     else:
-        return render_template("buy.html")
+        return render_template("buy.html", active_tab = 'buy')
 
 
 @app.route("/history")
 @login_required
 def history():
     history = db.execute("SELECT * FROM transaction_history WHERE user_ID = ?", session["user_id"])
-    return render_template("history.html", history=history)
+    return render_template("history.html", history=history, active_tab = 'history')
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -300,9 +300,9 @@ def sell():
         return redirect("/trade")
     else:
         owned_stocks = db.execute("SELECT * FROM purchases WHERE user_id=?", session["user_id"])
-        return render_template("sell.html", owned_stocks=owned_stocks)
+        return render_template("sell.html", owned_stocks=owned_stocks, active_tab = 'sell')
 
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=True)  
 
