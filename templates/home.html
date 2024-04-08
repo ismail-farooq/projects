@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Programming Portfolio</title>
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header class="hide" style="opacity: 1;">
+        <nav class="nav">
+            Ismail Farooq
+            <ul>
+                <li>
+                    <a href="#" class="active">My Projects</a>
+                </li>
+                <li>
+                  <a href="#">About</a>
+              </li>
+                <li>
+                    <a href="https://www.github.com/HollowWinter429" target="_blank" class="git"><i class="github fab fa-github"></i></a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/ismail-omer-farooq/" target="_blank" class="git"><i class="github fab fa-linkedin"></i></a>
+              </li>
+                <li class="search">
+                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div>
+        <h1 class="title">My Projects</h1>
+    </div>
+
+  <main>
+    <div class="project-card phover">
+      <h2>Face Detection</h2>
+      <p>A project utilizing computer vision techniques to detect faces in images or videos.</p>
+      <a href="{{ url_for('camera_feed')}}"> Try Out </a>
+    </div>
+
+    <div class="project-card">
+        <h2>Face Identification</h2>
+        <p>A project utilizing computer vision techniques to identify known faces in images or videos.</p>
+        <a href="#">Explore</a>
+      </div>
+
+    <div class="project-card">
+      <h2>Trading App</h2>
+      <p>An application for analyzing market trends, managing portfolios, and executing trades.</p>
+      <a href="{{ url_for("trade")}}">Explore</a>
+    </div>
+
+    <div class="project-card">
+      <h2>Image Filter Web App</h2>
+      <p>A web application that allows users to apply various filters to images in real-time.</p>
+      <a href="#">Explore</a>
+    </div>
+
+    <div class="project-card">
+      <h2>Birthday Email Automation System</h2>
+      <p>An automated system for sending personalized birthday emails to clients or users.</p>
+      <a href="#">Explore</a>
+    </div>
+
+  </main>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('header', { delay: 100, distance: '50px', origin: 'top' });
+    ScrollReveal().reveal('.title', { delay: 150, distance: '50px', origin: 'top' });
+    ScrollReveal().reveal('.project-card', { delay: 200, distance: '50px', origin: 'bottom' });
+  </script>
+</body>
+
+</html>

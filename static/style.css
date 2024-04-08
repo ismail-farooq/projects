@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 header {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     color: #fff;
     padding: 5px 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3) ;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.3) ;
 }
   
 body {
@@ -15,6 +15,7 @@ body {
     background-size: cover;
     background-position: center;
     color: #333;
+
 }
   
 
@@ -121,3 +122,14 @@ a:hover {
 main a {
     background-color: #0056b3;
 }
+
+#video-feed {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 55%;
+}
+
+
+

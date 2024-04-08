@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Recognition</h1>
+    <div>
+        <img src="{{ url_for('video_feed') }}" alt="Video Feed" id="video-feed"">
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal().reveal('h1', { delay: 100, distance: '50px', origin: 'top' });
+        ScrollReveal().reveal('img', { delay: 150, distance: '50px', origin: 'top' });
+
+       document.addEventListener('keydown', function(event) {
+            if (event.key === 'q') {
+                window.location.href = '/';
+            }
+        });
+    </script>
+</body>
+</html>

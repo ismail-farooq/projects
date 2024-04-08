@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transaction History
+{% endblock %}
+
+{% block main %}
+    <h2>Transaction History</h2>
+    <br>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Transaction Type</th>
+                <th>Name of Stock</th>
+                <th>Number of Shares</th>
+                <th>Price of Each Stock</th>
+                <th>Total share Value</th>
+                <th>Date and Time of Transaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in history %}
+            <tr>
+                <td>{{ item["transaction_type"] }}</td>
+                <td>{{ item["name_of_stock"] }}</td>
+                <td>{{ item["number_of_shares"] }}</td>
+                <td>{{ item["unit_price"] | usd }}</td>
+                <td>{{ item["total_price"] | usd }}</td>
+                <td>{{ item["date_of_transaction"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
