@@ -1,6 +1,7 @@
 git credential-cache exit
 git config --unset credential.helper
 git config --global core.autocrlf false
+hello my name is sulemaan
 git init
 git add .
 git commit -m "commit message"
