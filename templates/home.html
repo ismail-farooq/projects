@@ -42,13 +42,14 @@
     <div class="project-card">
       <h2>Face Detection</h2>
       <p>A project utilizing computer vision techniques to detect faces in images or videos.</p>
+      <p style="color: red; font-size: x-small;">Warning: Requires Access to Device Webcam, May not Work on Tablet/Mobile Devices</p>
       <a href="{{ url_for('camera_feed')}}"> Explore  </a>
     </div>
 
     <div class="project-card">
-        <h2>Face Identification</h2>
-        <p>A project utilizing computer vision techniques to identify known faces in images or videos.</p>
-        <a href="#">Explore</a>
+        <h2>Weather App</h2>
+        <p>A weather app project that utilizes real-time weather data to provide accurate forecasts and visual representations of current weather conditions.</p>
+        <a href="{{ url_for('weather')}}">Explore</a>
       </div>
 
     <div class="project-card">
@@ -60,7 +61,13 @@
     <div class="project-card">
       <h2>Image Filter Web App</h2>
       <p>A web application that allows users to apply various filters to images in real-time.</p>
-      <a href="#">Explore</a>
+      <a href="{{ url_for("image_filter")}}">Explore</a>
+    </div>
+
+    <div class="project-card">
+      <h2>3 Dimensional Parallax Design</h2>
+      <p>An immersive and dynamic visual experience that brings depth and movement to web interfaces.</p>
+      <a href="{{ url_for("parallax")}}">Explore</a>
     </div>
 
     <div class="project-card">

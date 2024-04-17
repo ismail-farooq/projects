@@ -4,9 +4,10 @@ import pytz
 import requests
 import urllib
 import uuid
-
+import yfinance as yf
 from flask import redirect, render_template, session
 from functools import wraps
+from datetime import datetime, timedelta
 
 
 def apology(message, code=400):
@@ -51,39 +52,43 @@ def login_required(f):
 
 
 def lookup(symbol):
-    """Look up quote for symbol."""
-
-    # Prepare API request
     symbol = symbol.upper()
-    end = datetime.datetime.now(pytz.timezone("US/Eastern"))
-    start = end - datetime.timedelta(days=7)
-
-    # Yahoo Finance API
-    url = (
-        f"https://query1.finance.yahoo.com/v7/finance/download/{urllib.parse.quote_plus(symbol)}"
-        f"?period1={int(start.timestamp())}"
-        f"&period2={int(end.timestamp())}"
-        f"&interval=1d&events=history&includeAdjustedClose=true"
-    )
-
-    # Query API
     try:
-        response = requests.get(
-            url,
-            cookies={"session": str(uuid.uuid4())},
-            headers={"Accept": "*/*", "User-Agent": "python-requests"},
-        )
-        response.raise_for_status()
-
-        # CSV header: Date,Open,High,Low,Close,Adj Close,Volume
-        quotes = list(csv.DictReader(response.content.decode("utf-8").splitlines()))
-        price = round(float(quotes[-1]["Adj Close"]), 2)
-        return {"price": price, "symbol": symbol}
-    
-    except (KeyError, IndexError, requests.RequestException, ValueError):
+        # Fetch historical data for the past week
+        stock_data = yf.download(symbol, period="1w", interval="1d", auto_adjust=True)
+        if not stock_data.empty:
+            last_price = stock_data["Close"].iloc[-1]
+            return {"price": round(last_price, 2), "symbol": symbol}
+        else:
+            print(f"No data found for symbol {symbol}")
+            return None
+    except Exception as e:
+        print(f"Error occurred: {e}")
         return None
-
 
 def usd(value):
     """Format value as USD."""
     return f"${value:,.2f}"
+
+def _weather(location):
+    APIKEY = 'c4986010e7bf7418c5afa912f8a8aadb'
+    weather_data = requests.get(
+        f"https://api.openweathermap.org/data/2.5/weather?q={location}&units=imperial&APPID={APIKEY}"
+    )
+
+    if weather_data.status_code == 404:
+        return 404
+    else: 
+        weather_data = weather_data.json()
+        temperature_F = round(weather_data['main']['temp'], 0)
+        temperature_C = round((temperature_F - 32) * (5/9), 0)
+        main = weather_data['weather'][0]['main']
+        description = weather_data['weather'][0]['description']
+        humidity = weather_data['main']['humidity']
+        wind_speed = weather_data['wind']['speed']
+        location = weather_data['name']
+
+
+        weather_details = [temperature_F, temperature_C, main, description, humidity, wind_speed, location]
+        return weather_details
+    

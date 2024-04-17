@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        nav {
+            padding-left: 2.19%;
+            margin-bottom: 2.60%;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        canvas {
+            display: flex;
+            margin-left: auto;
+            margin-right: 40%;
+            margin-bottom: 2.5%;
+            width: 50%;
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(0,0,0,0.2);
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            width: 50%;
+            align-items: start;
+            margin-left: 10%;            
+        }
+        .input-file {
+            display: none;
+        }
+        .upload-file {
+            background-color: transparent;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 2px solid rgba(0,0,0,0.2);
+            color: #fff;
+            padding: 1.3021% 5.1242%;
+            margin-bottom: 2.6042%;
+            border-radius: 0.651%;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font: 1em sans-serif;
+        }
+
+        .upload-file:hover {
+            color: white;
+            background-color: #001041;
+        }
+
+        .wrapper {
+            display: grid;
+            position: absolute;
+            grid-template-areas: "left right";
+            width: 30%;
+            bottom: 25%;
+            right: 4.3937%;
+            margin-left: auto;
+        }
+
+        .filters-container, .effects-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .filters-container button, .effects-container button {
+            width: 70%;
+        }
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color:black;
+        }
+        .filter-btn, .effect-btn {
+            background-color: transparent;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 2px solid rgba(0,0,0,0.2);
+            color: rgba(255,255,255,0.8);
+            padding: 3.5% 2.92%;
+            margin-bottom: 2.30%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font: 100% sans-serif;
+        }
+        .filter-btn:hover, .effect-btn:hover {
+            background-color: #001041;
+            color: #fff;
+        }
+        .slider-container {
+            width: 30%;
+            position: absolute;
+            right: 7.32%;
+            bottom: 14%;
+        }
+        .slider-container.show {
+            display: block;
+        }
+        .slider-label {
+            display: block;
+            margin-bottom: 1%;
+            font-weight: bold;
+        }
+        .slider {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Image Editor</h1>
+    </nav>
+    <canvas id="canvas"></canvas>
+
+    <div class="container"><button id="reset-file" class="upload-file" style="width: 80%; color: red;">Reset Filter</button></div>
+
+    <div class="wrapper">
+        <div class="filters-container">
+            <div class="section-title">Filters</div>
+            <button class="filter-btn brightness">Brightness</button>
+            <button class="filter-btn">Contrast</button>
+            <button class="filter-btn">Saturation</button>
+            <button class="filter-btn">Vibrance</button>
+        </div>
+        <div class="effects-container">
+            <div class="section-title">Effects</div>
+            <button class="effect-btn vintage">Vintage</button>
+            <button class="effect-btn lomo">Lomo</button>
+            <button class="effect-btn clarity">Clarity</button>
+            <button class="effect-btn sincity">Sin City</button>
+            <button class="effect-btn cross-process">Cross Process</button>
+            <button class="effect-btn pinhole">Pinhole</button>
+            <button class="effect-btn nostalgia">Nostalgia</button>
+            <button class="effect-btn her-majesty">Her Majesty</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <input type="file" id="upload-file" class="input-file">
+        <label for="upload-file" class="upload-file">Choose Image</label>
+
+        <button id="save-file" class="upload-file" style="color: black;">Save Image</button>
+    </div>
+
+    <div class="slider-container" id="sliderContainer">
+        <label class="slider-label" for="slider">Adjust Filter Strength:</label>
+        <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js" integrity="sha512-JjFeUD2H//RHt+DjVf1BTuy1X5ZPtMl0svQ3RopX641DWoSilJ89LsFGq4Sw/6BSBfULqUW/CfnVopV5CfvRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../static/image.js"></script>
+</html>

@@ -5,8 +5,9 @@ from cs50 import SQL
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import cv2
+import requests
 
-from helpers import apology, login_required, lookup, usd
+from helpers import apology, login_required, lookup, usd, _weather
 
 app = Flask(__name__)
 
@@ -78,12 +79,29 @@ def camera_feed():
     time.sleep(3)
     return render_template("video_feed.html")
 
+@app.route("/camera")
+def camera():
+    return render_template("face.html")
+
+@app.route("/weather", methods=["GET", "POST"])
+def weather():
+    return render_template("weather.html")
+
+@app.route("/image-filter")
+def image_filter():
+    return render_template("image_filter.html")
+
+@app.route("/3D-Parallax")
+def parallax():
+    return render_template("parallax.html")
+
 @app.route("/trade")
 @login_required
 def trade():
     owned_stocks = db.execute("SELECT * FROM purchases WHERE user_ID=?", session["user_id"])
+    balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
 
-    return render_template("index.html", owned_stocks=owned_stocks)
+    return render_template("index.html", owned_stocks=owned_stocks, balance=balance)
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -133,14 +151,16 @@ def buy():
 
         return redirect("/trade")
     else:
-        return render_template("buy.html", active_tab = 'buy')
+        balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+        return render_template("buy.html", active_tab = 'buy', balance=balance)
 
 
 @app.route("/history")
 @login_required
 def history():
     history = db.execute("SELECT * FROM transaction_history WHERE user_ID = ?", session["user_id"])
-    return render_template("history.html", history=history, active_tab = 'history')
+    balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+    return render_template("history.html", history=history, active_tab = 'history', balance=balance)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -215,10 +235,12 @@ def quote():
 
         name = stock["symbol"]
         price = usd(stock["price"])
-        return render_template("quoted.html", name=name, price=price, active_tab = 'quote')
+        balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+        return render_template("quoted.html", name=name, price=price, active_tab = 'quote', balance=balance)
 
     else:
-        return render_template("quote.html", active_tab = 'quote')
+        balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+        return render_template("quote.html", active_tab = 'quote', balance=balance)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -300,9 +322,11 @@ def sell():
         return redirect("/trade")
     else:
         owned_stocks = db.execute("SELECT * FROM purchases WHERE user_id=?", session["user_id"])
-        return render_template("sell.html", owned_stocks=owned_stocks, active_tab = 'sell')
+        balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+        return render_template("sell.html", owned_stocks=owned_stocks, active_tab = 'sell', balance=balance)
+
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0')  
+    app.run(debug=True)  
 

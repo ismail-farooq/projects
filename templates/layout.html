@@ -87,7 +87,7 @@
                                     <a href="/">Change Password</a>
                                 </div>
                             </div>
-                            <li class="nav-item"><a class="nav-link">Account Balance: {{ session["cash"] |usd }}!</a></li>
+                            <li class="nav-item"><a class="nav-link">Account Balance: {{ balance[0]['cash']| usd }}!</a></li>
                             <li class="nav-item"><a class="nav-link">Welcome, {{ session["username"] }}!</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                             

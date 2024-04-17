@@ -1,0 +1,605 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
+
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppings", sans-serif;
+    overflow-x: hidden;
+}
+
+::selection {
+    background-color: #0b372dbb;
+}
+
+.logo {
+    width: 100px;
+}
+
+header {
+    width: 100%;
+    z-index: 9999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: absolute;
+    width: 100%;
+    padding: 0.9rem 0;
+    top: 0;
+    left: 0;
+}
+
+header nav {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+header ul a {
+    text-decoration: none;
+    color: #fff;
+    padding: 0 1.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 0.83rem;
+}
+.search a {
+    font-size: 1.05rem;
+    padding: 0 3rem;
+}
+
+.hamburger {
+    padding-left: 1.5rem;
+}
+
+.hamburger a {
+    padding: 0;
+    width: 37px;
+    height: 37px;
+    display: flex;
+    border-radius: 50%;
+    background-color: rgba(115, 115, 115, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger .bar {
+    position: relative;
+    width: 52%;
+    height: 1.3px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.hamburger .bar::before, .hamburger .bar::After {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 60%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.hamburger .bar::before {
+    top: -4.5px;
+}
+
+.hamburger .bar::after {
+    top: 4.5px;
+}
+
+main {
+    position: relative;
+    background-color: #353;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+parallax {
+    pointer-events: none;
+    transition: 0.45s cubic-bezier(0.2, 0.49, 0.32,0.99);
+}
+
+.bg-img {
+    position: absolute;
+    width: 146.41%;
+    top: 13.54%;
+    left: 50.73%;
+    z-index: 1;
+}
+
+.fog-7 {
+    position: absolute;
+    width: 95.17%;
+    top: 46.09%;
+    left: 71.96%;
+    z-index: 2;
+}
+
+.mountain-10 {
+    position: absolute;
+    width: 51.24%;
+    top: 59.11%;
+    left: 60.25%;
+    z-index: 3;
+}
+
+.fog-6 {
+    position: absolute;
+    width: 113.47%;
+    top: 63.02%;
+    left: 49.27%;
+    z-index: 4;
+}
+
+.mountain-9 {
+    position: absolute;
+    width: 31.48%;
+    top: 69.53%;
+    left: 28.40%;
+    z-index: 5;
+}
+
+.mountain-8 {
+    position: absolute;
+    width: 58.57%;
+    top: 70.83%;
+    left: 39.02%;
+    z-index: 6;
+}
+
+.fog-5 {
+    position: absolute;
+    width: 29.28%;
+    top: 74.74%;
+    left: 39.02%;
+    z-index: 7;
+}
+
+.mountain-7 {
+    position: absolute;
+    width: 36.60%;
+    top: 68.23%;
+    left: 66.11%;
+    z-index: 8;
+}
+
+.text {
+    pointer-events: auto;
+    position: absolute;
+    z-index: 9;
+    top: 43.49%;
+    left: 50%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.text h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-size: 5.5rem;
+    line-height: 0.88;
+}
+
+.text h1 {
+    font-weight: 800;
+    font-size: 6.5rem;
+    line-height: 0.88;
+}
+
+.mountain-6 {
+    position: absolute;
+    width: 36.60%;
+    top: 72.14%;
+    left: 89.53%;
+    z-index: 10;
+}
+
+.fog-4 {
+    position: absolute;
+    width: 36.60%;
+    top: 72.14%;
+    left: 89.53%;
+    z-index: 11;
+}
+
+.mountain-5 {
+    position: absolute;
+    width: 36.60%;
+    top: 81.90%;
+    left: 59.52%;
+    z-index: 12;
+}
+
+.fog-3 {
+    position: absolute;
+    width: 73.21%;
+    top: 69.53%;
+    left: 89.53%;
+    z-index: 13;
+}
+
+.mountain-4 {
+    position: absolute;
+    width: 51.24%;
+    top: 78.65%;
+    left: 28.04%;
+    z-index: 14;
+}
+
+.mountain-3 {
+    position: absolute;
+    width: 21.96%;
+    top: 78.65%;
+    left: 93.19%;
+    z-index: 15;
+}
+
+.fog-2 {
+    position: absolute;
+    width: 73.21%;
+    top: 78.65%;
+    left: 64.64%;
+    z-index: 16;
+}
+
+.mountain-2 {
+    position: absolute;
+    width: 47.58%;
+    top: 76.04%;
+    left: 76.35%;
+    z-index: 17;
+}
+
+.mountain-1 {
+    position: absolute;
+    width: 29.28%;
+    top: 64.32%;
+    left: 11.93%;
+    z-index: 18;
+}
+
+.sun-rays {
+    position: absolute;
+    width: 43.92%;
+    top: 0;
+    right: 0;
+    z-index: 19;
+    pointer-events: none;
+}
+
+.black-shadow {
+    position: absolute;
+    width: 120%;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.fog-1 {
+    position: absolute;
+    width: 109.81%;
+    top: 64.32%;
+    left: 42.68%;
+    z-index: 21;
+}
+
+.vignette {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 65%, rgba(0,0,0,0.7));
+    pointer-events: none;
+}
+
+.sec {
+    position: relative;
+    background: #003329;
+    padding: 13.02% 7.31%;
+    font-family: "poppins";
+}
+
+.sec h2 {
+    font-size: 3em;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.73%;
+}
+.sec p {
+    font-size: 1em;
+    font-weight: 300;
+    color: #fff;
+}
+
+.login {
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    color: #fff;
+    transform :translate(-50%, -50%);
+    width: 30.77%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 4.25% 3%;
+}
+
+.login h1 {
+    font-size: 3em;
+    font-weight: 600;
+}
+
+.login .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 300;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.login .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.login .button {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 14px;
+    color: #003329;
+    font-weight: 600;
+}
+
+.login .sign-up-link {
+    font-size: 14.5px;
+    margin: 20px;
+}
+
+.sign-up-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.sign-up-link p a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+    .text h1 {
+        font-size: 5.8rem;
+    }
+
+    .text h2 {
+        font-size: 4.7rem;
+    }
+}
+
+@media (max-width: 725px) {
+    .text h1 {
+        font-size: 5rem;
+        line-height: 1.1;
+    }
+
+    .text h2 {
+        font-size: 4.1rem;
+        line-height: 1.1;
+    }
+
+    header nav {
+        padding: 0 1rem;
+    }
+
+    header ul a {
+        font-size: 0.73rem;
+    }
+
+    .search a {
+        font-size: 0.85rem;
+        padding: 0 1.8rem;
+    }
+
+    .logo {
+        width: 75px;
+        padding: 0 0.9rem;
+    }
+
+    .hamburger {
+        padding-left: 0.9rem;
+    }
+
+    .hamburger a {
+        height: 30px;
+        width: 30px;
+    }
+
+    .bg-img {
+        width: initial;
+        height: 234.26%;
+    }
+    
+    .fog-7 {
+        width: initial;
+        height: 152.27%;
+    }
+    
+    .mountain-10 {
+        width: initial;
+        height: 81.98%;
+    }
+    .fog-6 {
+        width: initial;
+        height: 181.55%;
+        display: none;
+    }
+    
+    .mountain-9 {
+        width: initial;
+        height: 50.37%;
+    }
+    
+    .mountain-8 {
+        width: initial;
+        height: 93.71%;
+    }
+    
+    .fog-5 {
+        width: initial;
+        height: 46.85%;
+    }
+    
+    .mountain-7 {
+        width: initial;
+        height: 58.56%;
+    }
+    
+    .mountain-6 {
+        width: initial;
+        height: 58.56%;
+    }
+    
+    .fog-4 {
+        width: initial;
+        height: 58.56%;
+    }
+    
+    .mountain-5 {
+        width: initial;
+        height: 58.56%;
+    }
+    
+    .fog-3 {
+        width: initial;
+        height: 117.14%;
+    }
+    
+    .mountain-4 {
+        width: initial;
+        height: 81.98%;
+    }
+    
+    .mountain-3 {
+        width: initial;
+        height: 35.14%;
+    }
+    
+    .fog-2 {
+        width: initial;
+        height: 117.14%;
+    }
+    
+    .mountain-2 {
+        width: initial;
+        height: 76.19%;
+    }
+    
+    .mountain-1 {
+        width: initial;
+        height: 46.85%;
+    }
+    
+    .sun-rays {
+        width: initial;
+        height: 70.27%;
+    }
+    
+    .black-shadow {
+        width: initial;
+        height: 192%;
+    }
+    
+    .fog-1 {
+        width: initial;
+        height: 175.70%;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .text {
+        top: 35%;
+    }
+    .text h1 {
+        font-size: 3.3rem;
+    }
+
+    .text h2 {
+        font-size: rem;
+    }
+}

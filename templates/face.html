@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../static/face-api/face-api.min.js"></script>
+  <script src="../static/face-api/script.js"></script>
+
+
+  <link rel="stylesheet" href="../static/style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: absolute;
+    }
+
+    body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  margin: 0;
+}
+
+h1, p {
+  align-self: flex-start;
+  padding-left: 20px;
+}
+
+video {
+  margin: -80px 0;
+}
+
+#faceCount, p {
+  padding: 20px;
+  color: white;
+}
+
+    
+  </style>
+</head>
+<body>
+  <h1>Face Recognition</h1>
+  <video id="video" width="720" height="560" muted autoplay playsinline></video>
+  <p>Press Q to return to Home</p>
+  <div id="faceCount">0</div> 
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal().reveal('h1', { delay: 100, distance: '50px', origin: 'top' });
+        ScrollReveal().reveal('video', { delay: 150, distance: '50px', origin: 'top' });
+
+        document.addEventListener('keydown', function(event) {
+    if (event.key === 'q' || event.key === 'Q') {
+        if (history.length > 1) {
+            // Go back to the previous page
+            history.back();
+        } else {
+            // Close the tab or window
+            window.close();
+        }
+    }
+});
+
+    </script>
+</body>
+</html>
