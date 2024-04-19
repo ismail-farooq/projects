@@ -8,8 +8,18 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <title> Weather App </title>
     <style>
+        #map{
+            height: 40%;
+            width: 50%;
+            visibility: hidden;
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+        }
+
         
 *{
     margin: 0;
@@ -88,6 +98,17 @@ body{
     position: absolute;
     color: #06283D;
     font-size: 28px;
+    width: 30%;
+    height: 14%;
+    padding: 1.46% 2.05%;
+    left: 0%;
+    cursor: pointer;
+    color: #06283D;
+    border-radius: 50%;
+    transition: 0.4s ease;
+}
+.search-box i:hover{
+    background: white;
 }
 
 .weather-box{
@@ -206,11 +227,13 @@ body{
 
 <body>
 
+    <div id="map"></div>
+
     <div class="container" style="background: transparent; backdrop-filter: blur(20px); border: 2px solid rgba(0, 0, 0, 0.2);">
         <div class="search-box">
-            <i class="fa-solid fa-location-dot"></i>
-            <input type="text" placeholder="Enter your location">
-            <button class="fa-solid fa-magnifying-glass"></button>
+            <button id="open-map" class="fa-solid fa-location-dot"></button>
+            <input id="location-name" type="text" placeholder="Enter your location">
+            <button id='submit' class="fa-solid fa-magnifying-glass search"></button>
         </div>
 
         <div class="not-found">
@@ -245,6 +268,104 @@ body{
     
     <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
     <script src="../static/script.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+
+        const button = document.getElementById("open-map");
+        const locationInput = document.getElementById("location-name");
+        
+        const map = L.map('map').setView([0, 0], 13); // Initialize map with default view
+
+        button.addEventListener("click", () => {
+            document.getElementById('map').style.visibility = 'visible'; 
+        });
+        
+
+        // Add OpenStreetMap tiles to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        let marker, circle;
+
+        // Success callback for geolocation
+        function success(pos) {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            const accuracy = pos.coords.accuracy;
+
+            // Create marker if not already created
+            if (!marker) {
+                marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+                circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+
+                // Event listener for marker dragend
+                marker.on('dragend', async function (e) {
+                    const newLatLng = e.target.getLatLng();
+                    circle.setLatLng(newLatLng);
+                    map.setView(newLatLng); // Update map view to new marker position
+
+                    // Call reverse geocoding API to get the address
+                    const country = await getCountry(newLatLng.lat, newLatLng.lng);
+                    console.log(country); // Display the country in the console
+                    locationInput.value = country; // Set country name in the input field
+                });
+            } else {
+                // Update marker and circle position
+                marker.setLatLng([lat, lng]);
+                circle.setLatLng([lat, lng]);
+            }
+
+            map.fitBounds(circle.getBounds()); // Fit map view to circle bounds
+        }
+
+        // Error callback for geolocation
+        function error(err) {
+            if (err.code === 1) {
+                alert("Please allow geolocation access");
+            } else {
+                alert("Cannot get current location");
+            }
+        }
+
+        // Attempt to get current location using geolocation API
+        navigator.geolocation.watchPosition(success, error);
+
+        // Function to call OpenCage Geocoding API for reverse geocoding and get country
+        async function getCountry(lat, lng) {
+            const apiKey = '2390ce2cb1124dd8b56aa6382a95e0c6';
+            const url = `https://api.opencagedata.com/geocode/v1/json?key=${apiKey}&q=${lat}+${lng}&pretty=1`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                if (data.results.length > 0) {
+                    // Extract country component from the address
+                    const components = data.results[0].components;
+                    return components.country;
+                } else {
+                    return 'Country not found';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return 'Error fetching data';
+            }
+        }
+
+
+        // Event listener for the search button click
+search.addEventListener('click', () => {
+    document.getElementById('map').style.visibility = 'hidden'; 
+});
+
+// Event listener for keypress in the input field
+locationInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('map').style.visibility = 'hidden'; 
+    }
+});
+    </script>
 </body>
 
 </html>
