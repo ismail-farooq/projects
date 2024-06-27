@@ -1,4 +1,4 @@
-from flask import Flask, flash, session, render_template, Response, redirect, url_for, request
+from flask import Flask, flash, session, render_template, Response, redirect, url_for, request, jsonify
 import os, datetime
 import time
 from cs50 import SQL
@@ -325,6 +325,30 @@ def sell():
         balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
         return render_template("sell.html", owned_stocks=owned_stocks, active_tab = 'sell', balance=balance)
 
+
+def apology(message, code=400):
+    """Render message as an apology to user."""
+
+    def escape(s):
+        """
+        Escape special characters.
+
+        https://github.com/jacebrowning/memegen#special-characters
+        """
+        for old, new in [
+            ("-", "--"),
+            (" ", "-"),
+            ("_", "__"),
+            ("?", "~q"),
+            ("%", "~p"),
+            ("#", "~h"),
+            ("/", "~s"),
+            ('"', "''"),
+        ]:
+            s = s.replace(old, new)
+        return s
+    balance = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+    return render_template("apology.html", top=code, bottom=escape(message), balance=balance), code
 
 
 if __name__ == "__main__":
